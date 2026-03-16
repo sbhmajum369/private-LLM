@@ -26,6 +26,14 @@ Tested with Python 3.12.x
 
 Use `min_p` and `temp` hyperparams for best and repeatable inference output.  
 
+### Tested models  
+
+* `mistralai/Mistral-7B-v0.3`  
+* `mistralai/Ministral-3-3B-Base-2512`  
+* `Qwen/Qwen2.5-7B`  
+* `LiquidAI/LFM2.5-1.2B-Base`
+
+
 ***Qwen models converge faster and also learns better***  
 
 
