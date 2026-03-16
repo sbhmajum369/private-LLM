@@ -19,7 +19,7 @@ from huggingface_hub import snapshot_download
 
 
 
-Tested_Models = ["mistralai/Mistral-7B-v0.3", "mistralai/Ministral-3-3B-Base-2512", "Qwen/Qwen2.5-7B", "LiquidAI/LFM2.5-1.2B-Base", "allenai/Olmo-3-1025-7B"] 
+Tested_Models = ["mistralai/Mistral-7B-v0.3", "mistralai/Ministral-3-3B-Base-2512", "Qwen/Qwen2.5-7B", "LiquidAI/LFM2.5-1.2B-Base"] 
 local_model_path = os.path.abspath(f"./pre-trained_models") 
 MODEL_NAME = Tested_Models[1] 
 OUTPUT_DIR = "./trained_models/Ministral3_3B_adapter_1" 
