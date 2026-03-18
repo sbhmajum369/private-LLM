@@ -110,7 +110,7 @@ def main():
     #     # attn_implementation = "sdpa",  # sdpa (packing=False) flash_attention_3
     # ) 
 
-    ## For Mistral variants, load 4-bit quantized model 
+    ## For Ministral variants, load 4-bit quantized model 
     model = Mistral3ForConditionalGeneration.from_pretrained(
         model_src_path, 
         device_map="auto", 

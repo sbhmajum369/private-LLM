@@ -74,19 +74,27 @@ def chatml_conversation_format(example, tokenizer):
 def mistral_conversation_format(example, tokenizer):
     role_mapping = {"human": "user", "gpt": "assistant", "system": "system"}
     
-    formatted_text = "" 
+    prompt = "" 
+    system_content = "" 
 
     for msg in example["conversations"]:
         role = role_mapping.get(msg["from"], msg["from"])
         content = msg["value"] 
         # print(role) 
 
-        if role == "assistant":
-            formatted_text += f"###{role}:\n{content}{tokenizer.eos_token}\n"
-        else:
-            formatted_text += f"###{role}:\n{content}\n"
+        ## NEW 
+        if role == 'system':
+            # Store system content to prepend to the first user message
+            system_content = f"{content}\n"
+        elif role == 'user':
+            # Prepend system content only to the first user message
+            combined_content = f"{system_content}{content}" if system_content else f"{content}"
+            prompt += f"[INST] {combined_content} [/INST]"
+            system_content = "" # Clear after first use 
+        elif role == 'assistant':
+            prompt += f"{content}{tokenizer.eos_token}" 
     
-    return {"text": formatted_text} 
+    return {"text": prompt} 
 
 
 def mistral_nonChatML(dataset_train, dataset_eval, save_path):

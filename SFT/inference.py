@@ -26,6 +26,9 @@ FINAL_SAVE_PATH = "./trained_models/Ministral3_3B_IFT_1"
 DEVICE = "auto" #"cuda:0" if torch.cuda.is_available() else "cpu" 
 
 
+#TODO: Apply the normal merging and inference for Mistral models 
+
+
 def merge_save(quantized_4bit:bool=True):
     tokenizer = AutoTokenizer.from_pretrained(ADAPTER_PATH) 
 
@@ -72,7 +75,7 @@ def merge_save(quantized_4bit:bool=True):
 
     return 
 
-def merge_save_mistral(quantized_4bit:bool=True):
+def merge_save_ministral(quantized_4bit:bool=True):
     tokenizer = AutoTokenizer.from_pretrained(ADAPTER_PATH) 
 
     bnb_config = BitsAndBytesConfig(
@@ -146,11 +149,11 @@ def load_model_and_tokenizer(quantized_4bit:bool=False):
             low_cpu_mem_usage=True,
             # attn_implementation="flash_attention_2"
         ) 
-    model.config.use_cache = False
+    # model.config.use_cache = False
 
     return model, tokenizer 
 
-def load_model_and_tokenizer_mistral(quantized_4bit:bool=False):
+def load_model_and_tokenizer_ministral(quantized_4bit:bool=False):
     bnb_config = BitsAndBytesConfig(
         load_in_4bit=True,
         bnb_4bit_quant_type="nf4",
@@ -176,7 +179,7 @@ def load_model_and_tokenizer_mistral(quantized_4bit:bool=False):
             low_cpu_mem_usage=True,
             # attn_implementation="flash_attention_2"
         ) 
-    model.config.use_cache = False 
+    # model.config.use_cache = False 
 
     return model, tokenizer 
 
@@ -216,8 +219,7 @@ def inference(model, tokenizer, query:str=""):
             temperature=0.3,
             # top_p=0.99,
             min_p=0.10,
-            # use_cache=True,
-            # repetition_penalty = 1.1,
+            # cache_implementation="offloaded",
         )
     
     # print("\nRaw O/P => ", tokenizer.decode(outputs[0]))
@@ -230,7 +232,7 @@ def inference(model, tokenizer, query:str=""):
 
     return response 
 
-def inference_mistral(model, tokenizer, query:str=""):
+def inference_ministral(model, tokenizer, query:str=""):
     if len(query) == 0:
         query = "Create a python function to calculate the sum of a sequence of integers. here are the inputs [1, 2, 3, 4, 5]" 
     
@@ -250,16 +252,16 @@ def inference_mistral(model, tokenizer, query:str=""):
         user_prompt = next(m["content"] for m in messages if m["role"] == "user")
 
         prompt = (
-            f"<s>###system:\n{system_prompt}\n"
-            f"###user:\n{user_prompt}\n"
-            f"###assistant:\n"
+            f"<s>[INST] {system_prompt}\n"
+            f"{user_prompt} [/INST]"
+            # f"###assistant:\n"
         )
     else:
         user_prompt = next(m["content"] for m in messages if m["role"] == "user")
 
         prompt = (
-            f"<s>###user:\n{user_prompt}\n"
-            f"###assistant:\n"
+            f"<s>[INST] {user_prompt} [/INST]"
+            # f"###assistant:\n"
         ) 
 
     ## troubleshooting 
@@ -281,7 +283,7 @@ def inference_mistral(model, tokenizer, query:str=""):
             temperature=0.3,
             # top_p=0.95,
             min_p=0.10,
-            # use_cache=True,
+            # cache_implementation="offloaded",
             eos_token_id = stop_ids,
             repetition_penalty = 1.1,
         )
@@ -335,7 +337,7 @@ def main():
     ## Merging and Saving 
     
     # # merge_save() 
-    # merge_save_mistral()
+    # merge_save_ministral()
     # torch.cuda.empty_cache() 
     # print("\nLoRA adapter merging complete!\n") 
     # return 
@@ -345,7 +347,7 @@ def main():
     eval_samples = dataset_eval.select(range(5)) 
 
     # model_4bit, tokenizer = load_model_and_tokenizer(False) 
-    model_4bit, tokenizer = load_model_and_tokenizer_mistral(False) 
+    model_4bit, tokenizer = load_model_and_tokenizer_ministral(False) 
     
     questions = [
         "Say the words 'doughnot', 'apple' and 'excalibar'. Don't provide any explanation.",
@@ -367,7 +369,7 @@ def main():
     
     user_msg = questions[2] 
     # inference(lora_model, tokenizer_lora, user_msg) 
-    inference_mistral(model_4bit, tokenizer, user_msg) # As of my last update in 2023, the population of Amsterdam is approximately 846,000 people
+    inference_ministral(model_4bit, tokenizer, user_msg) # As of my last update in 2023, the population of Amsterdam is approximately 846,000 people
 
     return 
 

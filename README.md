@@ -26,11 +26,15 @@ Tested with Python 3.12.x
 
 Use `min_p` and `temp` hyperparams for best and repeatable inference output.  
 
+
+__Note__: For **Mistral**, use `AutoModelForCausalLM` and for **Ministral** variants use `Mistral3ForConditionalGeneration`.  
+
+
 ### Tested models  
 
-* `mistralai/Mistral-7B-v0.3`  
+* `mistralai/Mistral-7B-v0.3` (*prefereed*)  
 * `mistralai/Ministral-3-3B-Base-2512`  
-* `Qwen/Qwen2.5-7B`  
+* `Qwen/Qwen2.5-7B` (*preferred*)  
 * `LiquidAI/LFM2.5-1.2B-Base`
 
 
