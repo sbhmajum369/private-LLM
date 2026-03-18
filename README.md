@@ -32,8 +32,8 @@ __Note__: For **Mistral**, use `AutoModelForCausalLM` and for **Ministral** vari
 
 ### Tested models  
 
-* `mistralai/Mistral-7B-v0.3` (*prefereed*)  
-* `mistralai/Ministral-3-3B-Base-2512`  
+* `mistralai/Mistral-7B-v0.3`  
+* `mistralai/Ministral-3-3B-Base-2512` (*prefereed*)  
 * `Qwen/Qwen2.5-7B` (*preferred*)  
 * `LiquidAI/LFM2.5-1.2B-Base`
 
