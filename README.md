@@ -54,7 +54,7 @@ For DPO:
 3. __Inference__(and merging): For merging and running test on RL adapters with base SFT model, use `RL/DPO/.../merge_and_inference_*.py`  
 
 
-***Online DPO and RLOO will be added in the future***  
+***GRPO and RLOO will be added in the future***  
 
 
 ## Notes  
