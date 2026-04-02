@@ -70,7 +70,7 @@ For **Mistral**, use `AutoModelForCausalLM` and for **Ministral** variants use `
 
 During SFT, ***Qwen models converge faster and also learns better***.  
 
-***Next Version v2 includes auto-training and fine-tuning on local coversation data.***  
+***Next Version v0.2.0 includes auto-training and fine-tuning on local coversation data.***  
 
 _______ 
 
