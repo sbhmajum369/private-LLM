@@ -57,25 +57,20 @@ For DPO:
 ***Online DPO and RLOO will be added in the future***  
 
 
-### Next Version: *v2* includes auto-training and fine-tuning on local coversation data.  
-
-
 ## Notes  
 
 Use `min_p` and `temp` hyperparams for best and repeatable inference output.  
-
-__Note__: For **Mistral**, use `AutoModelForCausalLM` and for **Ministral** variants use `Mistral3ForConditionalGeneration`.  
-
+For **Mistral**, use `AutoModelForCausalLM` and for **Ministral** variants use `Mistral3ForConditionalGeneration`.  
 
 ### Tested models  
-
 * `mistralai/Mistral-7B-v0.3`  
 * `mistralai/Ministral-3-3B-Base-2512` (*prefereed*)  
 * `Qwen/Qwen2.5-7B` (*preferred*)  
 * `LiquidAI/LFM2.5-1.2B-Base`
 
-
 During SFT, ***Qwen models converge faster and also learns better***.  
+
+***Next Version v2 includes auto-training and fine-tuning on local coversation data.***  
 
 _______ 
 
