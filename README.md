@@ -17,7 +17,7 @@ Tested with **Python 3.12.x**.
 2. Activate *venv* and run `deps_install.bat` (use the same sequence for linux kernel)  
 
 
-## Post-training  
+## Post-training (*wLoRA*)  
 
 With an open-source BASE model from HuggingFace and your own data custom train your model following these 2 stages: ***SFT*** and ***RL***.  
 
