@@ -54,7 +54,7 @@ For DPO:
 3. __Inference__(and merging): For merging and running test on RL adapters with base SFT model, use `RL/DPO/.../merge_and_inference_*.py`  
 
 
-***GRPO and RLOO will be added in the future***  
+~~***GRPO and RLOO will be added in the future***~~  
 
 
 ## Notes  
@@ -70,7 +70,7 @@ For **Mistral**, use `AutoModelForCausalLM` and for **Ministral** variants use `
 
 During SFT, ***Qwen models converge faster and also learns better***.  
 
-***Next Version v0.2.0 includes auto-training and fine-tuning on local coversation data.***  
+~~***Next Version v0.2.0 includes auto-training and fine-tuning on local coversation data.***~~  
 
 _______ 
 
