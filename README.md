@@ -1,4 +1,4 @@
-# Private-LLM  
+# Post-training pipeline for Private-LLM (using HF): 🤗  
 
 Train your own LLM with custom instructions using **HuggingFace** and open-weight base models.  
 This is a ***POST-TRAINING*** pipeline for custom model tuning, which can be used to validate different LLM architectures with proprietary data.  
